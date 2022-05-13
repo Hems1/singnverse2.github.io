@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="nav.css" />
+    <title>SIGNVERSE</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: #f2f5f7;
+            font-family: sans-serif;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        body {
+            overflow-x: hidden;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        nav {
+            height: 6rem;
+            width: 100vw;
+            background-color: #131418;
+            box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            position: fixed;
+            z-index: 10;
+        }
+
+        /*Styling logo*/
+        .logo {
+            padding: 1vh 1vw;
+            text-align: center;
+        }
+
+        .logo img {
+            height: 5rem;
+            width: 13rem;
+        }
+
+        /*Styling Links*/
+        .nav-links {
+            display: flex;
+            list-style: none;
+            width: 88vw;
+            padding: 0 0.7vw;
+            justify-content: space-evenly;
+            align-items: center;
+            text-transform: uppercase;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            margin: 0 0.7vw;
+        }
+
+        .nav-links li a:hover {
+            color: #61DAFB;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links li a::before {
+            content: "";
+            display: block;
+            height: 3px;
+            width: 0%;
+            background-color: #61DAFB;
+            position: absolute;
+            transition: all ease-in-out 250ms;
+            margin: 0 0 0 10%;
+        }
+
+        .nav-links li a:hover::before {
+            width: 80%;
+        }
+
+        /*Styling Buttons*/
+        .career-button {
+            background-color: transparent;
+            border: 1.5px solid #f2f5f7;
+            border-radius: 2em;
+            padding: 0.6rem 0.8rem;
+            margin-left: 2vw;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .career-button a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+        }
+
+        .career-button:hover {
+            color: #131418;
+            background-color: #ee9e00;
+            border: 1.5px solid #f2f5f7;
+            transition: all ease-in-out 350ms;
+        }
+
+        .contact-button {
+            color: #131418;
+            background-color: #ee9e00;
+            border: 1.5px solid #61DAFB;
+            border-radius: 2em;
+            padding: 0.6rem 0.8rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .contact-button a {
+            color: rgb(14, 13, 13);
+            text-decoration: none;
+        }
+
+        .contact-button :hover {
+            color: #f2f5f7;
+            background-color: transparent;
+            border: 1.5px solid #f2f5f7;
+            transition: all ease-in-out 350ms;
+        }
+
+        /*Styling Hamburger Icon*/
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background: #f2f5f7;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        /*Stying for small screens*/
+        @media screen and (max-width: 800px) {
+            nav {
+                position: fixed;
+                z-index: 3;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                cursor: pointer;
+                right: 5%;
+                top: 50%;
+                transform: translate(-5%, -50%);
+                z-index: 2;
+                transition: all 0.7s ease;
+            }
+
+            .nav-links {
+                position: fixed;
+                background: #131418;
+                height: 100vh;
+                width: 100%;
+                flex-direction: column;
+                clip-path: circle(50px at 90% -20%);
+                -webkit-clip-path: circle(50px at 90% -10%);
+                transition: all 1s ease-out;
+                pointer-events: none;
+            }
+
+            .nav-links.open {
+                clip-path: circle(1000px at 90% -10%);
+                -webkit-clip-path: circle(1000px at 90% -10%);
+                pointer-events: all;
+            }
+
+            .nav-links li {
+                opacity: 0;
+            }
+
+            .nav-links li:nth-child(1) {
+                transition: all 0.5s ease 0.2s;
+            }
+
+            .nav-links li:nth-child(2) {
+                transition: all 0.5s ease 0.4s;
+            }
+
+            .nav-links li:nth-child(3) {
+                transition: all 0.5s ease 0.6s;
+            }
+
+            .nav-links li:nth-child(4) {
+                transition: all 0.5s ease 0.7s;
+            }
+
+            .nav-links li:nth-child(5) {
+                transition: all 0.5s ease 0.8s;
+            }
+
+            .nav-links li:nth-child(6) {
+                transition: all 0.5s ease 0.9s;
+                margin: 0;
+            }
+
+            .nav-links li:nth-child(7) {
+                transition: all 0.5s ease 1s;
+                margin: 0;
+            }
+
+            li.fade {
+                opacity: 1;
+            }
+        }
+
+        /*Animating Hamburger Icon on Click*/
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .toggle .line2 {
+            transition: all 0.7s ease;
+            width: 0;
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .logo img {
+            /*  box-shadow: 3px 4px 15px 4px green;*/
+            display: block;
+            margin-left: 0%;
+            margin-top: 4%;
+            margin-right: auto;
+            width: 100%;
+            height: 85%;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(245, 249, 246, 0.8), 0 6px 20px 0 rgba(249, 253, 250, 0.4);
+            margin-bottom: 25px;
+            border-radius: 10px;
+
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        /*contact|mail|address*/
+
+        * {
+  box-sizing: border-box;
+}
+
+.left {
+  background-color: green;
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  float: left;
+  box-shadow: 0 4px 8px 0 rgba(161, 235, 174, 0.984), 0 6px 20px 0 rgb(174, 239, 185);
+  width: 20%;
+  height: 20vh; 
+  text-align: center;
+  padding: 65px 0;
+  font-weight: bold;
+  /* The width is 20%, by default */
+}
+
+.main {
+  background-color: green;
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  float: left;
+  box-shadow: 0 4px 8px 0 rgba(161, 235, 174, 0.984), 0 6px 20px 0 rgb(174, 239, 185);
+  width: 60%;
+  height: 20vh;
+  text-align: center;
+  font-weight: bold; 
+  padding: 65px 0; /* The width is 60%, by default */
+}
+
+.right {
+  background-color: green;
+  border: 2px solid white;
+  border-radius: 15px;
+  padding: 20px;
+  float: left;
+  box-shadow: 0 4px 8px 0 rgba(161, 235, 174, 0.984), 0 6px 20px 0 rgb(174, 239, 185);
+  width: 20%; 
+  height: 20vh;
+  text-align: center;
+  padding: 65px 0;
+  font-weight: bold;
+   /* The width is 20%, by default */
+}
+
+/* Use a media query to add a break point at 800px: */
+@media screen and (max-width: 800px) {
+  .left, .main, .right {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
+        @keyframes home {
+            0% {
+                left: 0px;
+                top: 0px;
+            }
+
+            25% {
+                left: 80%;
+                top: 0px;
+            }
+        }
+
+        /*form styling*/
+        .submitbtn {
+            font-family: 'Manrope', sans-serif;
+            color: white;
+            background: black;
+            border: 2px solid gray;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            border: 4px solid white;
+        }
+
+        .submitbtn:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .container {
+            border: 4px solid white;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 3%;
+            padding: 10px 20px;
+            width: 90%;
+            border-radius: 10px;
+            font-size: 90%;
+            align-items: center;
+            background-color: green;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .form-group input {
+            text-align: center;
+            display: block;
+            width: 90%;
+            margin: 10px auto;
+            padding: 5px;
+            border-radius: 7px;
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+        }
+
+        .container h2 {
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px white;
+            font-size: 25px;
+        }
+
+        .container button {
+            margin: 20px auto;
+            display: block;
+            width: 63%;
+
+        }
+        /*--------------------------------------------------footer styling-----------------------------------*/
+
+
+        body {
+            line-height: 1.5;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content {
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .footer {
+            background-color: black;
+            padding: 70px 0;
+            border: 2px solid yellow;
+            border-radius: 5px;
+        }
+
+        .footer-col {
+            width: 33%;
+            padding: 0 15px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            color: #ffffff;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-col h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            background-color: #e91e63;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+        .footer-col ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 16px;
+            text-transform: capitalize;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 300;
+            color: #bbbbbb;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffffff;
+            padding-left: 8px;
+        }
+
+        .footer-col .social-links a {
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 0 10px 10px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.5s ease;
+        }
+
+        .footer-col .social-links a:hover {
+            color: #24262b;
+            background-color: #ffffff;
+        }
+
+        /*responsive*/
+        @media(max-width: 767px) {
+            .footer-col {
+                width: 50%;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media(max-width: 574px) {
+            .footer-col {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.jpg" alt="Logo Image">
+            </div>
+            <div class="hamburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">OUR SERVICES</a></li>
+                <li><a href="projects.html">PROJECTS</a></li>
+                <li><a href="enquire.html">ENQUIRE NOW</a></li>
+                <!--  <button class="career-button" type="button"
+                    onclick="document.getElementById('mail').style.display='block'"><a
+                        href="mailto:info@signverseindia.com">Career</a></button>-->
+
+                <button class="contact-button" type="button" style.display='block'><a href="contact.html">CONTACT
+                        US</a></button>
+            </ul>
+        </nav>
+    </header><br><br><br><br><br><br><br>
+<!--contact|mail|address-->
+<div class="left" >
+    <p >CONTACT US:<a href="tel:+91-8600617086" style="text-decoration: none;">8600617086</a></p>
+  </div>
+  
+  <div class="main">
+    <p>ADDRESS:127, Pushkar, Akriti Aqua City, Near 11 Mile Toll Plaza,Bhopal Bypass, Bhopal, M.P.</p>
+  </div>
+  
+  <div class="right">
+    <p>Email:<a href="mailto:signverseindia@gmail.com" style="text-decoration: none;">signverseindia@gmail.com</a></p>
+  </div><br><br><br><br><br><br><br><br><br>
+
+
+    <!--form-->
+    <div class="container">
+        <h2>ENQUIRY FORM</h2>
+        <form action="noaction.php">
+            <div class="form-group">
+                <input type="text" name="" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" placeholder="Contact number">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" placeholder="E-mail Id">
+            </div>
+            <div class="form-group">
+                <input type="text" name="" placeholder="your Enquiry">
+            </div>
+        </form>
+        </form>
+        </form>
+        </form>
+        <button class="submitbtn">Submit</button>
+    </div><br><br><br>
+
+    <!--------------------------------------------------------------------Footer------------------------------------------------------------>
+    <footer class="footer">
+        <div class="content">
+            <div class="row">
+                <div class="footer-col">
+                    <!--<h4 style="color:rgb(118, 247, 118);">Company</h4>-->
+                    <ul>
+
+                        <div>
+                            <img src="logo.jpg" alt="Logo Image"
+                                style=" border-radius: 10px;width:70%; box-shadow: 0 4px 8px 0 white, 0 6px 20px 0 black;">
+                        </div>
+
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color:rgb(118, 247, 118);">quick links</h4>
+                    <ul>
+                        <li><a href="#" style="color:rgb(118, 247, 118);">Email:</a>
+                            <p>Signverseindia@gmail.com</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div class="footer-col">
+                    <h4>online shop</h4>
+                    <ul>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>-->
+                <div class="footer-col">
+                    <h4 style="color: rgb(118, 247, 118);">follow us</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Signverseindia"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/signverse-india-7b9394235/"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="nav.js"></script>
+    <script>const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        const links = document.querySelectorAll(".nav-links li");
+
+        hamburger.addEventListener('click', () => {
+            //Animate Links
+            navLinks.classList.toggle("open");
+            links.forEach(link => {
+                link.classList.toggle("fade");
+            });
+
+            //Hamburger Animation
+            hamburger.classList.toggle("toggle");
+        });</script>
+</body>
+
+</html>
